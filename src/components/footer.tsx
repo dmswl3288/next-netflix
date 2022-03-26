@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div className="w-full px-[15px] md:px-[40px] lg:px-[80px] py-[20px] md:py-[50px] text-[#757575]">
+        <div className="w-full max-w-[1600px] mx-auto my-0 px-[15px] md:px-[40px] lg:px-[80px] py-[20px] md:py-[50px] text-[#757575]">
             <div className="text-[13px] py-[10px] md:py-[20px]">넷플릭스 대한민국</div>
             <div className="text-[.75em]">
                 <div>넷플릭스서비시스코리아 유한회사 통신판매업신고번호: 제2018-서울종로-0426호 전화번호: 080-001-9587</div>

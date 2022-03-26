@@ -13,7 +13,7 @@ const MovieDetail: NextPage = () => {
     if (isLoading) return null
     return (
         <Layout seoTitle={data.title}>
-            <div className="text-white">
+            <div className="text-white max-w-[1600px] mx-auto my-0">
                 <div
                     style={{ backgroundImage: `url(${IMAGE_BASE_URL}${data.backdrop_path})` }}
                     className={`w-full h-[250px] sm:h-[300px] md:h-[550px] lg:h-[700px] bg-cover bg-center`}
