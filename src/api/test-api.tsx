@@ -45,3 +45,11 @@ export const getMovieDetail = ({movie_id}: payloadType) => {
 
     return { data, isLoading, error }
 }
+
+export const getVideos = ({movie_id}: payloadType) => {
+    const url = `${BASE_URL}/movie/${movie_id}/videos?api_key=89266d25d7d6235cd3f30a363f0b455b&language=ko`
+    const fetcher = () => api.callApi({url, method: 'GET'}).then((res) => res.data)
+    const { data, isLoading, error } = useQuery('getVideos', fetcher)
+
+    return { data, isLoading, error }
+}

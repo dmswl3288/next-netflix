@@ -1,14 +1,16 @@
 import type { NextPage } from "next"
 import { useRouter } from "next/router"
 import { IMAGE_BASE_URL } from "src/api/api"
-import { getMovieDetail } from "src/api/test-api"
+import { getMovieDetail, getVideos } from "src/api/test-api"
 import Layout from "src/components/layout"
 
 const MovieDetail: NextPage = () => {
     const router = useRouter()
     const movie_id = router.query.id ? +router.query.id : undefined;
     const { data, isLoading, error } = getMovieDetail({movie_id})
+    const { data: v_data, isLoading: v_isLoading, error: v_error } = getVideos({movie_id})
     console.log(data)
+    console.log(v_data)
 
     if (isLoading) return null
     return (
@@ -45,6 +47,23 @@ const MovieDetail: NextPage = () => {
                     </div>
                     <div className="mt-4 text-[16px]">{data.overview}</div>
                 </div>
+                {movie_id === v_data?.id && (
+                    <>
+                    <div className="py-[50px]"><div className="w-full h-0.5 bg-[#303030]" /></div>
+                    <div className="text-[20px] font-semibold pb-2 px-[15px] md:px-[40px] lg:px-[80px]">예고편</div>
+                    <div className="flex flex-col md:flex-row md:overflow-scroll gap-5 px-[5px] md:px-[40px] lg:px-[80px]">
+                        {v_data?.results.map((video: any, i: number) => {
+                            return (
+                                <iframe
+                                    key={i}
+                                    className="bg-[#181818] min-w-full h-[250px] md:min-w-[534px] md:h-[300px]"
+                                    src={`https://www.youtube.com/embed/${video.key}?autoplay=1`}
+                                />
+                            )
+                        })}
+                    </div>
+                    </>
+                )}
             </div>
         </Layout>
     )
